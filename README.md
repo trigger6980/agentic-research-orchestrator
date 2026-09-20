@@ -4,6 +4,9 @@ A master's-level multi-agent system for autonomous research, debate, verificatio
 
 **Repo status:** core loop · LangGraph · Grok agents · eval set · **LLM backends** · **worktree isolation** · **baseline compare**
 
+**Latest `main`:** `446228b878f3b2ca096bd702d3e005e012fdc617`  
+**Full commit list:** [CHANGELOG.md](CHANGELOG.md) · [COMMITS.txt](COMMITS.txt)
+
 ## Why this is impressive
 
 Most agent demos are single-LLM wrappers. This project implements a **full orchestration layer**:
@@ -83,6 +86,23 @@ print(run_benchmark(Orchestrator(), load_questions('data/eval_questions.json')[:
 "
 ```
 
+## Reproducibility (commit hashes)
+
+Pin experiments to a known SHA:
+
+| Milestone | Full SHA |
+|-----------|----------|
+| Scaffold (v0.1) | `a25c253704c93ee9d587dfbf54e672693a244876` |
+| Core loop | `4378798b1ee5c3fa7e6705c12c760f98b5f1f796` |
+| Agents + eval | `c496a45ca32dfdf10cfa70ec2386fb1b0707f432` |
+| Backends + baseline | `27be30c3f5ae9aba02272feddbf82f9d123a322d` |
+
+```bash
+git checkout 27be30c3f5ae9aba02272feddbf82f9d123a322d
+```
+
+See [CHANGELOG.md](CHANGELOG.md) for the complete table.
+
 ## Grok Build agents
 
 Copy `agents/*.md` into `.grok/agents/` to use the same roles in Grok Build.
@@ -101,6 +121,8 @@ data/                  evaluation questions
 scripts/               demo.py, baseline_compare.py
 docs/
 tests/
+CHANGELOG.md           full SHA history
+COMMITS.txt            machine-readable SHA list
 ```
 
 ## Roadmap
@@ -113,6 +135,7 @@ tests/
 - [x] Real LLM backends (OpenAI / Anthropic / xAI)
 - [x] Worktree isolation helpers
 - [x] Baseline comparison script
+- [x] Documented commit hashes for reproducibility
 - [ ] Larger eval set + paper-quality results table
 - [ ] Wire worktrees into file-writing research tools
 
