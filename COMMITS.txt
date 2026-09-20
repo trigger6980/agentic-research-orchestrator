@@ -1,12 +1,15 @@
 # Full commit hashes — agentic-research-orchestrator
-# One SHA per line (newest first). Suitable for scripts and thesis appendices.
+# One SHA per line (newest first).
 
-207e03e87a2646a8ab622920d5d96ffc7a532bae  # Update README: backends, isolation, baseline compare, completed roadmap
-27be30c3f5ae9aba02272feddbf82f9d123a322d  # Add LLM backends (stub/openai/anthropic/xai), worktree isolation, baseline comparison script
-0fe18efe3a678a04bbf53163c9a76d44b7b38398  # Export Orchestrator, Task, IndependenceGate from package
-c496a45ca32dfdf10cfa70ec2386fb1b0707f432  # Add eval harness, LangGraph variant, tests, dataset, Grok agents, docs
-4378798b1ee5c3fa7e6705c12c760f98b5f1f796  # Add full orchestrator core with independence gate and audit trail
-cb7521c9e160a6d6c0320142973ea4a19b614841  # Add agent implementations: planner, researcher, skeptic, synthesizer, verifier
-100c2b6782bed0f909ac7441e7697b5f82fe12b8  # Implement core orchestrator loop, agents, evaluation harness, and tests
-a25c253704c93ee9d587dfbf54e672693a244876  # Initial commit: project scaffold for master's-level multi-agent research orchestrator
+77e67c0b21dc222cd0200e7596726f2672fff498  # Expand eval set to 20 questions; RESULTS table; research worktrees
+d7a2a58680fd4b447dcac766c627d3c859834179  # Link CHANGELOG and document commit hashes
+446228b878f3b2ca096bd702d3e005e012fdc617  # Add CHANGELOG with full commit hashes
+207e03e87a2646a8ab622920d5d96ffc7a532bae  # Update README: backends, isolation, baseline
+27be30c3f5ae9aba02272feddbf82f9d123a322d  # LLM backends, worktree isolation, baseline_compare
+0fe18efe3a678a04bbf53163c9a76d44b7b38398  # Export Orchestrator, Task, IndependenceGate
+c496a45ca32dfdf10cfa70ec2386fb1b0707f432  # eval harness, LangGraph, tests, Grok agents
+4378798b1ee5c3fa7e6705c12c760f98b5f1f796  # full orchestrator core + independence gate
+cb7521c9e160a6d6c0320142973ea4a19b614841  # agent implementations
+100c2b6782bed0f909ac7441e7697b5f82fe12b8  # core loop, agents, evaluation harness
+a25c253704c93ee9d587dfbf54e672693a244876  # scaffold for master's multi-agent research orchestrator
 fc3d3f678abeddda4ff80f225dbf88d3f2ab3c4b  # Initial commit
