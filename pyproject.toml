@@ -4,14 +4,19 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "agentic-research-orchestrator"
-version = "0.1.0"
-description = "Multi-agent research orchestration with debate and verification"
+version = "0.2.0"
+description = "Multi-agent research orchestration with debate, verification, and evaluation"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=7", "ruff>=0.5"]
+langgraph = ["langgraph>=0.2", "langchain-core>=0.2"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src"]
