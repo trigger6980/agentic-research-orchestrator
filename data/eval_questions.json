@@ -54,5 +54,89 @@
     "domain": "orchestration",
     "difficulty": "medium",
     "expected_claim_types": ["shared state", "dependencies", "write scope"]
+  },
+  {
+    "id": "q9",
+    "query": "What is retrieval-augmented generation (RAG) and when does it fail in agent pipelines?",
+    "domain": "RAG",
+    "difficulty": "medium",
+    "expected_claim_types": ["retrieval quality", "context window", "citation grounding"]
+  },
+  {
+    "id": "q10",
+    "query": "Compare LangGraph, CrewAI, and AutoGen for multi-agent orchestration in 2026.",
+    "domain": "frameworks",
+    "difficulty": "hard",
+    "expected_claim_types": ["graph workflows", "role-based crews", "conversation patterns"]
+  },
+  {
+    "id": "q11",
+    "query": "How can audit logs support debugging and accountability in multi-agent systems?",
+    "domain": "observability",
+    "difficulty": "easy",
+    "expected_claim_types": ["provenance", "replay", "compliance"]
+  },
+  {
+    "id": "q12",
+    "query": "What techniques reduce coordination cost when scaling beyond five concurrent agents?",
+    "domain": "orchestration",
+    "difficulty": "hard",
+    "expected_claim_types": ["batching", "hierarchy", "shared memory limits"]
+  },
+  {
+    "id": "q13",
+    "query": "Explain map-reduce style fan-out/fan-in patterns for parallel research agents.",
+    "domain": "orchestration",
+    "difficulty": "medium",
+    "expected_claim_types": ["fan-out", "aggregation", "partial failure"]
+  },
+  {
+    "id": "q14",
+    "query": "What safety risks arise when child agents inherit expanded tool permissions?",
+    "domain": "AI safety",
+    "difficulty": "medium",
+    "expected_claim_types": ["privilege escalation", "authority boundaries", "sandboxing"]
+  },
+  {
+    "id": "q15",
+    "query": "How should citation accuracy be measured for generated research reports?",
+    "domain": "evaluation",
+    "difficulty": "medium",
+    "expected_claim_types": ["source attribution", "quote fidelity", "dead links"]
+  },
+  {
+    "id": "q16",
+    "query": "Describe a minimal viable architecture for a multi-agent literature review system.",
+    "domain": "systems design",
+    "difficulty": "hard",
+    "expected_claim_types": ["planner", "retriever", "critic", "synthesizer"]
+  },
+  {
+    "id": "q17",
+    "query": "What is the difference between personas and full agent definitions in coding agents?",
+    "domain": "software engineering",
+    "difficulty": "easy",
+    "expected_claim_types": ["behavioral overlay", "tools", "system prompt"]
+  },
+  {
+    "id": "q18",
+    "query": "How do checkpointing and durable state improve long-running agent workflows?",
+    "domain": "systems design",
+    "difficulty": "medium",
+    "expected_claim_types": ["recovery", "idempotency", "partial progress"]
+  },
+  {
+    "id": "q19",
+    "query": "What empirical evidence exists that multi-agent debate improves factual accuracy?",
+    "domain": "evaluation",
+    "difficulty": "hard",
+    "expected_claim_types": ["benchmarks", "ablation", "cost-quality tradeoff"]
+  },
+  {
+    "id": "q20",
+    "query": "Propose evaluation criteria for a master's capstone on multi-agent research orchestration.",
+    "domain": "evaluation",
+    "difficulty": "medium",
+    "expected_claim_types": ["reproducibility", "metrics", "baseline comparison", "audit trail"]
   }
 ]
