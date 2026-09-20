@@ -1,0 +1,58 @@
+[
+  {
+    "id": "q1",
+    "query": "What are the main failure modes of multi-agent LLM systems in 2025-2026 literature?",
+    "domain": "AI systems",
+    "difficulty": "hard",
+    "expected_claim_types": ["coordination overhead", "hallucination cascade", "shared-state conflicts"]
+  },
+  {
+    "id": "q2",
+    "query": "Compare hierarchical vs peer-to-peer multi-agent architectures for research tasks.",
+    "domain": "AI systems",
+    "difficulty": "medium",
+    "expected_claim_types": ["centralized control", "handoff cost", "scalability"]
+  },
+  {
+    "id": "q3",
+    "query": "What evaluation metrics are used for agentic research assistants?",
+    "domain": "evaluation",
+    "difficulty": "medium",
+    "expected_claim_types": ["groundedness", "citation accuracy", "task success rate"]
+  },
+  {
+    "id": "q4",
+    "query": "How does verification-before-completion improve reliability of LLM agents?",
+    "domain": "AI safety",
+    "difficulty": "medium",
+    "expected_claim_types": ["error detection", "human oversight", "audit trails"]
+  },
+  {
+    "id": "q5",
+    "query": "What is the role of debate or adversarial agents in reducing hallucinations?",
+    "domain": "AI systems",
+    "difficulty": "hard",
+    "expected_claim_types": ["multi-agent debate", "critic models", "evidence forcing"]
+  },
+  {
+    "id": "q6",
+    "query": "Summarize best practices for isolating parallel coding agents (worktrees, ownership).",
+    "domain": "software engineering",
+    "difficulty": "easy",
+    "expected_claim_types": ["git worktrees", "single-writer", "merge conflicts"]
+  },
+  {
+    "id": "q7",
+    "query": "What are open challenges in building production multi-agent research systems?",
+    "domain": "AI systems",
+    "difficulty": "hard",
+    "expected_claim_types": ["cost", "latency", "evaluation", "tool reliability"]
+  },
+  {
+    "id": "q8",
+    "query": "How do independence gates decide when to run agents in parallel vs sequentially?",
+    "domain": "orchestration",
+    "difficulty": "medium",
+    "expected_claim_types": ["shared state", "dependencies", "write scope"]
+  }
+]
