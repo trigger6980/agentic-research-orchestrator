@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Experimental Results — Agentic Research Orchestrator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f7f4ef;
+    --bg-card: #fffcf8;
+    --ink: #1c1917;
+    --ink-muted: #57534e;
+    --ink-faint: #a8a29e;
+    --line: #e7e0d6;
+    --accent: #1d4ed8;
+    --accent-soft: #dbeafe;
+    --good: #15803d;
+    --multi: #1d4ed8;
+    --single: #78716c;
+    --radius: 14px;
+    --shadow: 0 1px 2px rgba(28,25,23,.04), 0 8px 24px rgba(28,25,23,.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    background: var(--bg); color: var(--ink); line-height: 1.55; min-height: 100vh;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+  .eyebrow {
+    font-size: .75rem; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: .75rem;
+  }
+  h1 {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-size: clamp(2.1rem, 4.5vw, 3.1rem); font-weight: 400;
+    line-height: 1.15; letter-spacing: -0.02em; margin-bottom: .85rem;
+  }
+  h1 em { font-style: italic; color: var(--ink-muted); }
+  .lede { font-size: 1.05rem; color: var(--ink-muted); max-width: 38rem; }
+  .meta { display: flex; flex-wrap: wrap; gap: .5rem .75rem; margin-top: 1.35rem; }
+  .chip {
+    font-size: .78rem; font-weight: 500; padding: .35rem .7rem; border-radius: 999px;
+    background: var(--bg-card); border: 1px solid var(--line); color: var(--ink-muted);
+  }
+  .chip strong { color: var(--ink); font-weight: 600; }
+  .grid-kpis {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem; margin-bottom: 2rem;
+  }
+  .kpi {
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 1.15rem 1.2rem; box-shadow: var(--shadow);
+  }
+  .kpi .label {
+    font-size: .72rem; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: .4rem;
+  }
+  .kpi .value {
+    font-family: "IBM Plex Mono", monospace; font-size: 1.65rem; font-weight: 500;
+  }
+  .kpi .sub { font-size: .8rem; color: var(--ink-muted); margin-top: .25rem; }
+  .kpi.highlight {
+    background: linear-gradient(145deg, #eff6ff 0%, var(--bg-card) 100%);
+    border-color: #bfdbfe;
+  }
+  .kpi.highlight .value { color: var(--good); }
+  section { margin-bottom: 2.5rem; }
+  h2 {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-size: 1.65rem; font-weight: 400; margin-bottom: 1rem;
+  }
+  .card {
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;
+  }
+  .card-body { padding: 1.35rem 1.4rem; }
+  table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+  th, td { text-align: left; padding: .7rem .9rem; border-bottom: 1px solid var(--line); }
+  th {
+    font-size: .7rem; font-weight: 600; letter-spacing: .05em;
+    text-transform: uppercase; color: var(--ink-faint); background: #faf7f2;
+  }
+  tr:last-child td { border-bottom: none; }
+  td.mono { font-family: "IBM Plex Mono", monospace; font-size: .84rem; }
+  .delta-pos { color: var(--good); font-weight: 600; }
+  .delta-zero { color: var(--ink-faint); }
+  .bar-row {
+    display: grid; grid-template-columns: 140px 1fr 52px;
+    align-items: center; gap: .75rem; margin-bottom: .85rem;
+  }
+  .bar-track {
+    height: 10px; background: #ebe6de; border-radius: 999px; overflow: hidden;
+  }
+  .bar-fill-m { background: var(--multi); height: 100%; }
+  .bar-val { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--ink-muted); text-align: right; }
+  .legend { display: flex; gap: 1.25rem; margin-bottom: 1.1rem; font-size: .8rem; color: var(--ink-muted); }
+  .legend span::before {
+    content: ""; display: inline-block; width: 10px; height: 10px;
+    border-radius: 3px; margin-right: .4rem; vertical-align: middle;
+  }
+  .legend .m::before { background: var(--multi); }
+  .legend .s::before { background: var(--single); opacity: .7; }
+  .callout {
+    border-left: 3px solid var(--accent); background: var(--accent-soft);
+    padding: 1rem 1.2rem; border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: .95rem; color: #1e3a5f;
+  }
+  .two-col { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } }
+  .scroll { overflow-x: auto; }
+  footer {
+    margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+    font-size: .82rem; color: var(--ink-muted);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  code {
+    font-family: "IBM Plex Mono", monospace; font-size: .82em;
+    background: #ebe6de; padding: .12em .4em; border-radius: 4px;
+  }
+  .nav { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; margin-bottom: 1.5rem; font-size: .88rem; }
+  .nav a { color: var(--ink-muted); text-decoration: none; font-weight: 500; }
+  .nav a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a href="https://github.com/trigger6980/agentic-research-orchestrator">Repository</a>
+    <a href="THESIS_OUTLINE.md">Thesis outline</a>
+    <a href="RESULTS.md">Markdown results</a>
+    <a href="ARCHITECTURE.md">Architecture</a>
+  </nav>
+  <header>
+    <p class="eyebrow">Evaluation · Capstone artifact</p>
+    <h1>Experimental results <em>at a glance</em></h1>
+    <p class="lede">
+      Multi-agent research orchestration versus single-agent one-shot generation
+      across twenty curated research questions. Built for reproducibility and committee review.
+    </p>
+    <div class="meta">
+      <span class="chip"><strong>n = 20</strong> questions</span>
+      <span class="chip"><strong>Backend</strong> stub (offline)</span>
+      <span class="chip"><strong>Date</strong> 2026-09-20</span>
+      <span class="chip"><strong>Repo</strong> agentic-research-orchestrator</span>
+    </div>
+  </header>
+  <div class="grid-kpis">
+    <div class="kpi highlight">
+      <div class="label">Verified (multi)</div>
+      <div class="value">1.00</div>
+      <div class="sub">Full pipeline + verifier</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Verified (single)</div>
+      <div class="value" style="color:var(--ink-faint)">0.00</div>
+      <div class="sub">No verification stage</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Δ Verified</div>
+      <div class="value" style="color:var(--good)">+1.00</div>
+      <div class="sub">Structural advantage</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Coherence (both)</div>
+      <div class="value">0.90</div>
+      <div class="sub">Stub content ceiling</div>
+    </div>
+  </div>
+  <section>
+    <h2>What the numbers mean</h2>
+    <div class="callout">
+      On the <strong>stub</strong> backend, content metrics match because both conditions receive the same deterministic text.
+      The decisive signal is <strong>verification rate</strong>: the multi-agent pipeline always runs a Verifier stage;
+      the single-agent baseline does not. Content-quality deltas require a live LLM (<code>xai</code> / <code>openai</code> / <code>anthropic</code>).
+    </div>
+  </section>
+  <section>
+    <h2>Aggregate means</h2>
+    <div class="card">
+      <div class="card-body">
+        <div class="legend">
+          <span class="m">Multi-agent</span>
+          <span class="s">Single-agent</span>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Citation acc.</div>
+          <div class="bar-track"><div class="bar-fill-m" style="width:100%"></div></div>
+          <div class="bar-val">1.00</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Groundedness</div>
+          <div class="bar-track"><div class="bar-fill-m" style="width:50%"></div></div>
+          <div class="bar-val">0.50</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Coherence</div>
+          <div class="bar-track"><div class="bar-fill-m" style="width:90%"></div></div>
+          <div class="bar-val">0.90</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Coverage</div>
+          <div class="bar-track"><div class="bar-fill-m" style="width:1.7%"></div></div>
+          <div class="bar-val">0.02</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Verified</div>
+          <div class="bar-track"><div class="bar-fill-m" style="width:100%"></div></div>
+          <div class="bar-val" style="color:var(--good);font-weight:600">1.00</div>
+        </div>
+      </div>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr><th>Metric</th><th>Multi-agent</th><th>Single-agent</th><th>Δ (M−S)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>citation_accuracy</td><td class="mono">1.000</td><td class="mono">1.000</td><td class="mono delta-zero">+0.000</td></tr>
+            <tr><td>groundedness</td><td class="mono">0.500</td><td class="mono">0.500</td><td class="mono delta-zero">+0.000</td></tr>
+            <tr><td>coherence</td><td class="mono">0.900</td><td class="mono">0.900</td><td class="mono delta-zero">+0.000</td></tr>
+            <tr><td>coverage</td><td class="mono">0.017</td><td class="mono">0.017</td><td class="mono delta-zero">+0.000</td></tr>
+            <tr><td><strong>verified</strong></td><td class="mono"><strong>1.000</strong></td><td class="mono">0.000</td><td class="mono delta-pos">+1.000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>Design claims this run supports</h2>
+    <div class="two-col">
+      <div class="card card-body">
+        <p style="font-weight:600;margin-bottom:.5rem">Pipeline correctness</p>
+        <p style="color:var(--ink-muted);font-size:.92rem">
+          Verification-before-completion is enforced end-to-end. Every multi-agent report is marked verified;
+          every single-agent report is not — offline, without an API key.
+        </p>
+      </div>
+      <div class="card card-body">
+        <p style="font-weight:600;margin-bottom:.5rem">What remains for the paper</p>
+        <p style="color:var(--ink-muted);font-size:.92rem">
+          Re-run with <code>ARO_LLM_BACKEND=xai</code> (or OpenAI / Anthropic) to measure content-quality
+          deltas on citation, groundedness, and coverage for the committee package.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>Per-question matrix</h2>
+    <div class="card scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>M-cite</th><th>M-ground</th><th>M-cohere</th><th>M-cover</th><th>M-ver</th>
+            <th>S-cite</th><th>S-ground</th><th>S-cohere</th><th>S-cover</th><th>S-ver</th>
+          </tr>
+        </thead>
+        <tbody id="qrows"></tbody>
+      </table>
+    </div>
+  </section>
+  <section>
+    <h2>Reproduce</h2>
+    <div class="card card-body">
+      <pre style="font-family:'IBM Plex Mono',monospace;font-size:.8rem;line-height:1.6;overflow-x:auto;color:var(--ink-muted)">ARO_LLM_BACKEND=stub PYTHONPATH=src python scripts/baseline_compare.py --out baseline_results.json
+python scripts/make_results_table.py --in baseline_results.json --out docs/RESULTS.md
+
+# Live model (paper figures)
+export XAI_API_KEY=...
+ARO_LLM_BACKEND=xai PYTHONPATH=src python scripts/baseline_compare.py --out baseline_results.json</pre>
+    </div>
+  </section>
+  <footer>
+    <p>
+      Agentic Research Orchestrator ·
+      <a href="https://github.com/trigger6980/agentic-research-orchestrator">GitHub</a> ·
+      <a href="THESIS_OUTLINE.md">Thesis outline</a> ·
+      Raw data: <code>baseline_results.json</code>
+    </p>
+  </footer>
+</div>
+<script>
+const rows = [
+  ["q1",1,.5,.9,0,1,1,.5,.9,0,0],["q2",1,.5,.9,0,1,1,.5,.9,0,0],
+  ["q3",1,.5,.9,0,1,1,.5,.9,0,0],["q4",1,.5,.9,0,1,1,.5,.9,0,0],
+  ["q5",1,.5,.9,0,1,1,.5,.9,0,0],["q6",1,.5,.9,0,1,1,.5,.9,0,0],
+  ["q7",1,.5,.9,0,1,1,.5,.9,0,0],["q8",1,.5,.9,0,1,1,.5,.9,0,0],
+  ["q9",1,.5,.9,0,1,1,.5,.9,0,0],["q10",1,.5,.9,0,1,1,.5,.9,0,0],
+  ["q11",1,.5,.9,0,1,1,.5,.9,0,0],["q12",1,.5,.9,0,1,1,.5,.9,0,0],
+  ["q13",1,.5,.9,.33,1,1,.5,.9,.33,0],["q14",1,.5,.9,0,1,1,.5,.9,0,0],
+  ["q15",1,.5,.9,0,1,1,.5,.9,0,0],["q16",1,.5,.9,0,1,1,.5,.9,0,0],
+  ["q17",1,.5,.9,0,1,1,.5,.9,0,0],["q18",1,.5,.9,0,1,1,.5,.9,0,0],
+  ["q19",1,.5,.9,0,1,1,.5,.9,0,0],["q20",1,.5,.9,0,1,1,.5,.9,0,0]
+];
+const tbody = document.getElementById("qrows");
+rows.forEach(r => {
+  const tr = document.createElement("tr");
+  r.forEach((c,i) => {
+    const td = document.createElement("td");
+    if (i === 0) td.textContent = c;
+    else {
+      td.className = "mono";
+      td.textContent = Number(c).toFixed(2);
+      if (i === 5 && c === 1) td.style.color = "var(--good)";
+      if (i === 10 && c === 0) td.style.color = "var(--ink-faint)";
+    }
+    tr.appendChild(td);
+  });
+  tbody.appendChild(tr);
+});
+</script>
+</body>
+</html>
