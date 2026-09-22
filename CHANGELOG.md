@@ -8,7 +8,7 @@ Repository: https://github.com/trigger6980/agentic-research-orchestrator
 
 | Full SHA | Date | Message |
 |----------|------|---------|
-| *(this commit)* | 2026-09-21 | Controller upgrade: polish README status, strengthen roadmap, document next thesis steps |
+| `ad9373e6e697df599296a6ddc17eb7bf37b4ff1c` | 2026-09-21 | Controller upgrade: polish README status, strengthen roadmap, document next thesis steps |
 | `77e67c0b21dc222cd0200e7596726f2672fff498` | 2026-09-20 | Expand eval set to 20 questions; add RESULTS table generator; wire research worktrees |
 | `d7a2a58680fd4b447dcac766c627d3c859834179` | 2026-09-20 | Link CHANGELOG and document commit hashes for reproducibility |
 | `446228b878f3b2ca096bd702d3e005e012fdc617` | 2026-09-20 | Add CHANGELOG with full commit hashes for reproducibility |
@@ -32,12 +32,12 @@ Repository: https://github.com/trigger6980/agentic-research-orchestrator
 | **v0.3 backends** | `27be30c3f5ae9aba02272feddbf82f9d123a322d` | LLM backends, worktrees, baseline_compare.py |
 | **v0.3.1 hashes** | `d7a2a58680fd4b447dcac766c627d3c859834179` | CHANGELOG + README reproducibility section |
 | **v0.4 eval+results** | `77e67c0b21dc222cd0200e7596726f2672fff498` | 20 eval questions, RESULTS.md generator, research worktrees |
-| **v0.4.1 controller** | *(this commit)* | README + roadmap hygiene for thesis readiness |
+| **v0.4.1 controller** | `ad9373e6e697df599296a6ddc17eb7bf37b4ff1c` | README + roadmap hygiene for thesis readiness |
 
 ## How to pin a revision
 
 ```bash
 git clone https://github.com/trigger6980/agentic-research-orchestrator
 cd agentic-research-orchestrator
-git checkout 77e67c0b21dc222cd0200e7596726f2672fff498
+git checkout ad9373e6e697df599296a6ddc17eb7bf37b4ff1c
 ```

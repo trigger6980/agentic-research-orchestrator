@@ -1,7 +1,7 @@
 # Full commit hashes — agentic-research-orchestrator
 # One SHA per line (newest first).
 
-# 2026-09-21 controller upgrade (SHA will appear after push)
+ad9373e6e697df599296a6ddc17eb7bf37b4ff1c  # 2026-09-21 Controller upgrade: README + roadmap hygiene
 77e67c0b21dc222cd0200e7596726f2672fff498  # Expand eval set to 20 questions; RESULTS table; research worktrees
 d7a2a58680fd4b447dcac766c627d3c859834179  # Link CHANGELOG and document commit hashes
 446228b878f3b2ca096bd702d3e005e012fdc617  # Add CHANGELOG with full commit hashes
