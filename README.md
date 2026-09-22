@@ -2,7 +2,7 @@
 
 A master's-level multi-agent system for autonomous research, debate, verification, and report synthesis.
 
-**Repo status:** core · eval (n=20) · backends · worktrees · baseline · **thesis outline** · **HTML results**
+**Repo status:** core · eval (n=20) · backends · worktrees · baseline · **thesis outline** · **HTML results** · controller-hardened
 
 **Docs hub:** [docs/index.html](docs/index.html) · **Results UI:** [docs/results.html](docs/results.html) · **Thesis:** [docs/THESIS_OUTLINE.md](docs/THESIS_OUTLINE.md)
 
@@ -88,8 +88,10 @@ Copy `agents/*.md` into `.grok/agents/`.
 - [x] LangGraph + Grok agents + backends + worktrees
 - [x] Eval set (20) + baseline + RESULTS.md / results.html
 - [x] Thesis outline
+- [x] Controller documentation pass (README + CHANGELOG hygiene)
 - [ ] Live-LLM paper figures (needs API key)
 - [ ] Tag release v0.5
+- [ ] Expand isolation tests and research worktree edge cases
 
 ## License
 
