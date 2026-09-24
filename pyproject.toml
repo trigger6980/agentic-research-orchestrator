@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "agentic-research-orchestrator"
-version = "0.2.0"
+version = "0.5.0"
 description = "Multi-agent research orchestration with debate, verification, and evaluation"
 readme = "README.md"
 requires-python = ">=3.10"
